@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Collector extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name','email','username','password','api_token'];
 }

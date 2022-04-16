@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class CollectionType extends Model
 {
     use HasFactory;
+
+    protected $fillablle = ['name'];
 }
