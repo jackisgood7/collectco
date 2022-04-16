@@ -14,7 +14,7 @@ class CollectorController extends Controller
         $user = Collector::where('username',$request->username)->orWhere('email',$request->username)->first();
         if($user!=null){
             if(Hash::check($request->password,$user->password)){
-                $user = $user->makeHidden(['password']);
+                $user = Collector::hidePassword($user);
                 return response()->json([
                     'data' => $user
                 ]);
@@ -28,12 +28,27 @@ class CollectorController extends Controller
             ]);
         }
     }
+    
     public function getUsers(){
-        return 'user list';
+        $user_list = Collector::all();
+        foreach($user_list as $user){
+            $user = Collector::hidePassword($user);
+        }
+        return response()->json([
+            'data' => $user_list
+        ]);
     }
 
     public function getUser($id){
-        return 'user '.$id;
+        $user = Collector::findorFail($id);
+        if($user)
+            return response()->json([
+                'data' => Collector::hidePassword($user)
+            ]);
+        else
+        return response()->json([
+            'error' => config('constants.message.invalid_format')
+        ]); 
     }
     public function register(Request $request){
         $validator = Validator::make($request->input(), [

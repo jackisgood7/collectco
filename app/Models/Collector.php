@@ -34,4 +34,8 @@ class Collector extends Model
     {
         return Crypt::decryptString($this->attributes['api_token']);
     }
+
+    public static function hidePassword($user){
+        return $user->makeHidden(['password']);
+    }
 }
