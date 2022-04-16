@@ -32,10 +32,10 @@ Route::group(['prefix'=>'api'],function() {
         Route::get('',[CollectorController::class,'getUsers']);
         //get specific
         Route::get('{id}',[CollectorController::class,'getUser']);
+        //get collection list for a user
+        Route::get('collection/{id}',[CollectorController::class,'getCollection']);
     });
     Route::group(['prefix'=>'collection'],function() {
-        //get collection list for a user
-        Route::get('getUserCollection/{id}',[CollectionController::class,'getUserCollection']);
         //add collection
         Route::post('store',[CollectionController::class,'store']);
         //get collection details

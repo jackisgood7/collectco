@@ -70,8 +70,16 @@ class CollectorController extends Controller
             'name' => $input->name
         ]);
         return response()->json([
-            'data' => $user
+            'data' => Collector::hidePassword($user)
         ]);
 
+    }
+
+    public function getCollection($id){
+        $user = Collector::findOrFail($id);
+        $collections = $user->collections;
+        return response()->json([
+            'data' => $collections
+        ]);
     }
 }

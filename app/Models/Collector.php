@@ -38,4 +38,8 @@ class Collector extends Model
     public static function hidePassword($user){
         return $user->makeHidden(['password']);
     }
+
+    public function collections(){
+        return $this->hasMany(Collection::class);
+    }
 }

@@ -9,7 +9,7 @@ class CollectionType extends Model
 {
     use HasFactory;
 
-    protected $fillablle = ['name'];
+    protected $fillablle = ['name','require_thumbnail'];
 
     protected $hidden = ['created_at','updated_at'];
 }
