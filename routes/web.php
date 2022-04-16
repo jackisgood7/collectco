@@ -27,7 +27,7 @@ Route::group(['prefix'=>'api'],function() {
         //login user
         Route::post('login',[CollectorController::class,'login']);
         //register user
-        Route::post('register',[CollectionController::class,'register']);
+        Route::post('register',[CollectorController::class,'register']);
         //get all users
         Route::get('',[CollectorController::class,'getUsers']);
         //get specific
