@@ -10,4 +10,6 @@ class CollectionType extends Model
     use HasFactory;
 
     protected $fillablle = ['name'];
+
+    protected $hidden = ['created_at','updated_at'];
 }

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\CollectionType;
 
 class CollectionTypeController extends Controller
 {
     public function index(){
-        return 'all collection types';
+        return response()->json([
+            'data' => CollectionType::all()
+        ]);
     }
 }
