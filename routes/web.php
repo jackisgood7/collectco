@@ -40,6 +40,8 @@ Route::group(['prefix'=>'api'],function() {
         Route::post('store',[CollectionController::class,'store']);
         //get collection details
         Route::get('{id}',[CollectionController::class,'show']);
+        //user download collection
+        Route::get('download/{id}',[CollectionController::class,'download']);
     });
     //get all collection types 
     Route::get('collectionTypes',[CollectionTypeController::class,'index']);
@@ -53,5 +55,4 @@ Route::group(['prefix'=>'api'],function() {
         //approve or reject the 
         Route::put('update',[TradeController::class,'update']);
     });
-    
 });
