@@ -35,15 +35,21 @@ return [
             'root' => storage_path('app'),
             'throw' => false,
         ],
-
-        'public' => [
+        'collection' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
-            'throw' => false,
+            'root' => base_path('../public_html/thumbnail'),
+            'visibility' => 'public'
         ],
-
+        'collection' => [
+            'driver' => 'local',
+            'root' => base_path('../public_html/thumbnail'),
+            'visibility' => 'public'
+        ],
+        'files' => [
+            'driver' => 'local',
+            'root' => base_path('../public_html/collection_files'),
+            'visibility' => 'public'
+        ],
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

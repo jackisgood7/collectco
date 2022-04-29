@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Trade extends Model
 {
     use HasFactory;
-
-    protected $fillable = ['status','request_collection_id','target_collection_id'];
+    const pending = 'pending' ;
+    const approved = 'approved';
+    const rejected = 'rejected';
+    protected $fillable = ['status','request_collection_id','target_collection_id','requestor_user_id','target_user_id'];
 }

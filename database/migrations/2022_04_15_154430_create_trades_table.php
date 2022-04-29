@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('trades', function (Blueprint $table) {
             $table->id();
             $table->string('status');
-            $table->foreignId('request_collection_id');
-            $table->foreignId('target_collection_id');
+            $table->integer('request_collection_id');
+            $table->integer('target_collection_id');
+            $table->integer('requestor_user_id');
+            $table->integer('target_user_id');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });

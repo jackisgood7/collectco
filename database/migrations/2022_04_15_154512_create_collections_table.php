@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
+            $table->string('condition_type');
             $table->foreignId('collection_type_id')->constrained('collection_types');
             $table->foreignId('collector_id')->constrained('collectors');
             $table->timestamp('created_at')->useCurrent();

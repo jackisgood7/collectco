@@ -5,6 +5,7 @@ use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\CollectionTypeController;
 use App\Http\Controllers\CollectorController;
 use App\Http\Controllers\TradeController;
+use App\Http\Controllers\ChatMessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,13 +17,20 @@ use App\Http\Controllers\TradeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('broadcast',[ChatMessageController::class,'broadcast']);
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 //all api routes are here 
-Route::group(['prefix'=>'api'],function() {
+Route::group(['prefix'=>'api','middleware' => 'api.auth'],function() {
+    
+    Route::group(['prefix'=>'chat'],function(){
+        Route::get('getMessage',[ChatMessageController::class,'getMessage']);
+        Route::post('send',[ChatMessageController::class,'send']);
+    });
+    
     Route::group(['prefix'=>'users'],function() {
         //login user
         Route::post('login',[CollectorController::class,'login']);
@@ -42,6 +50,8 @@ Route::group(['prefix'=>'api'],function() {
         Route::get('{id}',[CollectionController::class,'show']);
         //user download collection
         Route::get('download/{id}',[CollectionController::class,'download']);
+        //
+        Route::post('delete',[CollectionController::class,'delete']);
     });
     //get all collection types 
     Route::get('collectionTypes',[CollectionTypeController::class,'index']);
@@ -53,6 +63,6 @@ Route::group(['prefix'=>'api'],function() {
         //create trade request with other user
         Route::post('store',[TradeController::class,'store']);
         //approve or reject the 
-        Route::put('update',[TradeController::class,'update']);
+        Route::post('update',[TradeController::class,'update']);
     });
 });

@@ -9,6 +9,8 @@ class CollectionTypeController extends Controller
 {
     public function index(){
         return response()->json([
+            'responseCode' => 0,
+            'responseMessage' => 'Get collection type list',
             'data' => CollectionType::all()
         ]);
     }
